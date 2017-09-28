@@ -8,6 +8,8 @@ import (
 	"github.com/xaionaro/reform"
 	"github.com/xaionaro/reform/dialects/mysql"
 	"github.com/xaionaro/reform/dialects/sqlite3"
+	"log"
+	"os"
 	"runtime"
 	"strings"
 	"time"
@@ -132,3 +134,9 @@ func NewReformDb(name, driver, connectionString string, traceLogger reform.Logge
 
 	return nil, nil, fmt.Errorf("This shouldn't happened")
 }
+
+func FileToReformLogger(file *os.File) reform.Logger {
+	logger := log.New(file, "SQL: ", log.Flags())
+	return reform.NewPrintfLogger(logger.Printf)
+}
+
