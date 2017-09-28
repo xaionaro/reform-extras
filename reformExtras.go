@@ -111,7 +111,7 @@ func GetMysqlConnectionString(host, port, user, pass, dbname, protocol, socket s
 	return ""
 }
 
-func InitReformDb(name, driver, connectionString string, traceLogger reform.Logger, errorLogger reform.Logger, traceEnable bool) (*reform.DB, *sql.DB, error) {
+func NewReformDb(name, driver, connectionString string, traceLogger reform.Logger, errorLogger reform.Logger, traceEnable bool) (*reform.DB, *sql.DB, error) {
 	db, err := sql.Open(driver, connectionString)
 	if err != nil {
 		return nil, nil, err
